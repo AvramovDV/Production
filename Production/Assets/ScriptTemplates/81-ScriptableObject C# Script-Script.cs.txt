@@ -1,0 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Avramov.Production
+{
+    #ROOTNAMESPACEBEGIN#
+    [CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "Production/#SCRIPTNAME#")]
+    public class #SCRIPTNAME# : ScriptableObject
+    {
+        #NOTRIM#
+    }
+#ROOTNAMESPACEEND#
+}

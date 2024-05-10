@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da7c60e877fbc34bb85d08c04b14c84, type: 3}
+  m_Name: MapSettings
+  m_EditorClassIdentifier: 
+  _buildingSettings:
+  - {fileID: 11400000, guid: 01d1bb10c10ba49499c5bed488e5ed68, type: 2}
+  - {fileID: 11400000, guid: 060c0b52b4db9e44c951478cfeb9accd, type: 2}
+  - {fileID: 11400000, guid: 0514cc2ea7b79ea4aa2851f0bb7e48d3, type: 2}
+  - {fileID: 11400000, guid: 072b3226fa13a48488aed24a3ed51186, type: 2}
+  - {fileID: 11400000, guid: b81a06fc924c28b4f97c865fb3ed18f3, type: 2}
