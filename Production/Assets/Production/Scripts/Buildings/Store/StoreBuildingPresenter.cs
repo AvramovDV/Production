@@ -8,7 +8,7 @@ namespace Avramov.Production
         private SelectionModel _selection;
         private Assets _assets;
 
-        private BuildingView _view;
+        private StoreBuildingView _view;
 
         public StoreBuildingPresenter(StoreBuildingModel model, SelectionModel selection, Assets assets)
         {
@@ -32,9 +32,8 @@ namespace Avramov.Production
 
         private void InitView()
         {
-            BuildingView prefab = _assets.GetBuilding(_model.BuildType);
+            StoreBuildingView prefab = _assets.GetBuilding<StoreBuildingView>();
             _view = GameObject.Instantiate(prefab, _model.Position, prefab.transform.rotation);
-            _view.ProductionIndicator.gameObject.SetActive(false);
         }
 
         private void OnClick() => _selection.Select(_model);

@@ -8,7 +8,7 @@ namespace Avramov.Production
         private SelectionModel _seletion;
         private Assets _assets;
 
-        private BuildingView _view;
+        private ResourceBuildingView _view;
 
         public ResourceBuildingPresenter(ResourceBuildingModel model, SelectionModel selectionModel, Assets assets)
         {
@@ -36,7 +36,7 @@ namespace Avramov.Production
 
         private void InitBuilding()
         {
-            BuildingView prefab = _assets.GetBuilding(_model.BuildType);
+            ResourceBuildingView prefab = _assets.GetBuilding<ResourceBuildingView>();
             _view = GameObject.Instantiate(prefab, _model.Position, prefab.transform.rotation);
         }
 

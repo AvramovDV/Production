@@ -45,6 +45,8 @@ namespace Avramov.Production
             return _itemsConfigs.Find(x => CheckSubItems(subitems, x.SubItems))?.ItemType ?? ItemTypes.None;
         }
 
+        public IReadOnlyList<ItemTypes> GetSubItems(ItemTypes item) => _itemsConfigs.Find(x => x.ItemType == item)?.SubItems ?? null;
+
         private bool CheckSubItems(ItemTypes[] subitems1, IReadOnlyList<ItemTypes> subitems2, bool withOrder = true)
         {
             if (subitems1 == null)

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da7c60e877fbc34bb85d08c04b14c84, type: 3}
   m_Name: MapSettings
   m_EditorClassIdentifier: 
+  <TargetCoinsCount>k__BackingField: 50
   _buildingSettings:
   - {fileID: 11400000, guid: 01d1bb10c10ba49499c5bed488e5ed68, type: 2}
   - {fileID: 11400000, guid: 060c0b52b4db9e44c951478cfeb9accd, type: 2}

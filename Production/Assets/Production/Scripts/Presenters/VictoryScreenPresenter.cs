@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Avramov.Production
 {
@@ -43,7 +44,7 @@ namespace Avramov.Production
 
         private void OnClick()
         {
-            _gameStateMachine.SwitchState<BootstrapState>();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

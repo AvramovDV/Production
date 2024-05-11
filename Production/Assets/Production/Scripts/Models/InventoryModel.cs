@@ -84,10 +84,7 @@ namespace Avramov.Production
 
         private void SetupItems(List<ItemData> data)
         {
-            foreach (ItemData item in data)
-            {
-                _items.Add(_itemsSettings.GetItemModel(item));
-            }
+            _items = data.Select(x => _itemsSettings.GetItemModel(x)).ToList();
         }
     }
 }

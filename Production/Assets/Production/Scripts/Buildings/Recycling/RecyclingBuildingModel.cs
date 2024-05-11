@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +31,9 @@ namespace Avramov.Production
 
         public void StartProducting(ItemTypes item)
         {
+            if (!_inventory.CanProductItem(item))
+                return;
+
             ProductingItem = item;
             IsProducting = true;
             _producting = 0f;

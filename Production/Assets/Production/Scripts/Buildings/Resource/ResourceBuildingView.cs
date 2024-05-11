@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Avramov.Production
 {
-    public class BuildingView : MonoBehaviour, IPointerClickHandler
+    public class ResourceBuildingView : BuildingView
     {
         [field: SerializeField] public RectTransform ProductionIndicator { get; private set; }
         [field: SerializeField] public Image ItemImage { get; private set; }
@@ -13,16 +11,14 @@ namespace Avramov.Production
 
         [SerializeField] private Vector3 _offset;
 
-        public event Action ClickEvent;
-
         private Camera _camera;
 
         private void Start()
         {
             _camera = Camera.main;
-            ProductionIndicator.anchoredPosition = _camera.WorldToScreenPoint(transform.position + _offset);
+            SetupUIPosition();
         }
 
-        public void OnPointerClick(PointerEventData eventData) => ClickEvent?.Invoke();
+        public void SetupUIPosition() => ProductionIndicator.anchoredPosition = _camera.WorldToScreenPoint(transform.position + _offset);
     }
 }

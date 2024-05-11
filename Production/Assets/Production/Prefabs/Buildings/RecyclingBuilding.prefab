@@ -298,7 +298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3780669716939205668}
-  - component: {fileID: 5710194202443720528}
+  - component: {fileID: 1193853283373548617}
   m_Layer: 0
   m_Name: RecyclingBuilding
   m_TagString: Untagged
@@ -323,7 +323,7 @@ Transform:
   - {fileID: 5508805039330604319}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
---- !u!114 &5710194202443720528
+--- !u!114 &1193853283373548617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7997292008517923306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5837033a4e8f7184286a333e86867cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 2992d1c441956764daf85b0323f04b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <ProductionIndicator>k__BackingField: {fileID: 2309359981337946137}

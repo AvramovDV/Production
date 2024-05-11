@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1842188023833463930}
-  - component: {fileID: 4757301464428339484}
+  - component: {fileID: 2572648451490560298}
   m_Layer: 0
   m_Name: ResourceBuilding
   m_TagString: Untagged
@@ -146,7 +146,7 @@ Transform:
   - {fileID: 2730200977018684223}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
---- !u!114 &4757301464428339484
+--- !u!114 &2572648451490560298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5822363677353080589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5837033a4e8f7184286a333e86867cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 75ade4efc0a1e804081219eb1f9f27de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <ProductionIndicator>k__BackingField: {fileID: 3538848446371203091}

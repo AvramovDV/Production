@@ -6,20 +6,22 @@ namespace Avramov.Production
     public class MainScreenPresenter
     {
         private ScreensManager _screensManager;
-        private InventoryModel _playerModel;
+        private InventoryModel _inventoryModel;
+        private MapSettings _mapSettings;
         private Assets _assets;
 
         private List<ItemsCountPresenter> _countPresenters = new List<ItemsCountPresenter>();
 
         private MainScreen _mainScreen;
 
-        public MainScreenPresenter(ScreensManager screensManager, InventoryModel playerModel, Assets assets)
+        public MainScreenPresenter(ScreensManager screensManager, InventoryModel playerModel, Assets assets, MapSettings mapSettings)
         {
             _screensManager = screensManager;
-            _playerModel = playerModel;
+            _inventoryModel = playerModel;
             _assets = assets;
 
             _mainScreen = _screensManager.GetScreen<MainScreen>();
+            _mapSettings = mapSettings;
         }
 
         public void Activate()
@@ -31,7 +33,7 @@ namespace Avramov.Production
                 item.Activate();
             }
 
-            _playerModel.CoinsChangedEvent += ShowCoins;
+            _inventoryModel.CoinsChangedEvent += ShowCoins;
             ShowCoins();
             _mainScreen.SetActive(true);
         }
@@ -43,7 +45,7 @@ namespace Avramov.Production
                 item.Deactivate();
             }
 
-            _playerModel.CoinsChangedEvent -= ShowCoins;
+            _inventoryModel.CoinsChangedEvent -= ShowCoins;
             _mainScreen.SetActive(false);
         }
 
@@ -52,7 +54,7 @@ namespace Avramov.Production
             if (_countPresenters.Count > 0)
                 return;
 
-            foreach (var item in _playerModel.Items)
+            foreach (var item in _inventoryModel.Items)
             {
                 ItemView view = GameObject.Instantiate(_mainScreen.ItemPrefab, _mainScreen.ItemsPanelTransform);
                 view.Image.sprite = _assets.GetItemSprite(item.Type);
@@ -61,6 +63,6 @@ namespace Avramov.Production
             }
         }
 
-        private void ShowCoins() => _mainScreen.CoinsText.text = _playerModel.Coins.ToString();
+        private void ShowCoins() => _mainScreen.CoinsText.text = $"{_inventoryModel.Coins} / {_mapSettings.TargetCoinsCount}";
     }
 }

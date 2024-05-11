@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Avramov.Production
 {
     public class GameLoopState : BaseState
@@ -9,6 +5,10 @@ namespace Avramov.Production
         private MatchModel _matchModel;
         private InventoryModel _inventoryModel;
         private MapSettings _mapSettings;
+        private ScreensManager _screensManager;
+        private Assets _assets;
+        private SelectionModel _selectionModel;
+        private ItemsSettings _itemsSettings;
 
         private MainScreenPresenter _mainScreenPresenter;
         private BuildingsPresenter _buildingsPresenter;
@@ -20,24 +20,24 @@ namespace Avramov.Production
             MatchModel matchModel,
             InventoryModel inventoryModel,
             MapSettings mapSettings,
-            MainScreenPresenter mainScreenPresenter,
-            BuildingsPresenter buildingsPresenter,
-            ResourceBuildingScreenPresenter resourceBuildingScreenPresenter,
-            RecyclingBuildingScreenPresenter recyclingBuildingScreenPresenter,
-            StoreBuildingScreenPresenter storeBuildingScreenPresenter)
+            ScreensManager screens,
+            Assets assets,
+            SelectionModel selectionModel,
+            ItemsSettings itemsSettings)
         {
             _matchModel = matchModel;
             _inventoryModel = inventoryModel;
             _mapSettings = mapSettings;
-            _mainScreenPresenter = mainScreenPresenter;
-            _buildingsPresenter = buildingsPresenter;
-            _resourceBuildingScreenPresenter = resourceBuildingScreenPresenter;
-            _recyclingBuildingScreenPresenter = recyclingBuildingScreenPresenter;
-            _storeBuildingScreenPresenter = storeBuildingScreenPresenter;
+            _screensManager = screens;
+            _assets = assets;
+            _selectionModel = selectionModel;
+            _itemsSettings = itemsSettings;
         }
 
         public override void Start()
         {
+            SetupPresenters();
+
             _mainScreenPresenter.Activate();
             _buildingsPresenter.Activate();
             _resourceBuildingScreenPresenter.Activate();
@@ -61,6 +61,15 @@ namespace Avramov.Production
             _storeBuildingScreenPresenter.Deactivate();
 
             _inventoryModel.CoinsChangedEvent -= CheckVictory;
+        }
+
+        private void SetupPresenters()
+        {
+            _mainScreenPresenter = new MainScreenPresenter(_screensManager, _inventoryModel, _assets, _mapSettings);
+            _buildingsPresenter = new BuildingsPresenter(_matchModel, _assets, _selectionModel);
+            _resourceBuildingScreenPresenter = new ResourceBuildingScreenPresenter(_selectionModel, _screensManager, _assets);
+            _recyclingBuildingScreenPresenter = new RecyclingBuildingScreenPresenter(_selectionModel, _screensManager, _itemsSettings, _assets);
+            _storeBuildingScreenPresenter = new StoreBuildingScreenPresenter(_inventoryModel, _selectionModel, _screensManager, _assets);
         }
 
         private void CheckVictory()

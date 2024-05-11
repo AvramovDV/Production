@@ -1,26 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Avramov.Production
 {
     public class StoreBuildingScreenPresenter
     {
-        private InventoryModel _playerModel;
+        private InventoryModel _inventoryModel;
         private SelectionModel _selectionModel;
         private ScreensManager _screensManager;
         private Assets _assets;
 
         private ItemTypes _currentItem;
         private int _index = 0;
-        //private BuildModel _target;
         private StoreBuildingModel _target;
 
         private StoreBuildingScreen _screen;
 
-        public StoreBuildingScreenPresenter(InventoryModel playerModel, SelectionModel selectionModel, ScreensManager screensManager, Assets assets)
+        public StoreBuildingScreenPresenter(InventoryModel inventoryModel, SelectionModel selectionModel, ScreensManager screensManager, Assets assets)
         {
-            _playerModel = playerModel;
+            _inventoryModel = inventoryModel;
             _selectionModel = selectionModel;
             _screensManager = screensManager;
             _assets = assets;
@@ -42,6 +37,8 @@ namespace Avramov.Production
             _screen.ItemButton.onClick.RemoveListener(OnItemClick);
             _screen.SellButton.onClick.RemoveListener(OnSellClick);
             _screen.CloseButton.onClick.RemoveListener(OnCloseClick);
+
+            _screen.SetActive(false);
         }
 
         private void OnSelect()
@@ -49,8 +46,10 @@ namespace Avramov.Production
             if(_selectionModel.Selectable is StoreBuildingModel model)
             {
                 _target = model;
+                _index = 0;
                 _currentItem = ItemTypes.None;
                 _screen.ItemImage.sprite = _assets.GetItemSprite(_currentItem);
+                _screen.PriceText.text = "0";
                 SetupEnableStatus();
                 _screen.SetActive(true);
             }
@@ -64,7 +63,7 @@ namespace Avramov.Production
         {
             ChangeCurrentItem();
             _screen.ItemImage.sprite = _assets.GetItemSprite(_currentItem);
-            _screen.PriceText.text = _playerModel.GetItem(_currentItem).Price.ToString();
+            _screen.PriceText.text = _inventoryModel.GetItem(_currentItem).Price.ToString();
             SetupEnableStatus();
         }
 
@@ -73,10 +72,10 @@ namespace Avramov.Production
             if (_currentItem == ItemTypes.None)
                 return;
 
-            if (!_playerModel.CanSellItem(_currentItem))
+            if (!_inventoryModel.CanSellItem(_currentItem))
                 return;
 
-            _playerModel.SellItem(_currentItem);
+            _inventoryModel.SellItem(_currentItem);
             SetupEnableStatus();
         }
 
@@ -91,8 +90,8 @@ namespace Avramov.Production
 
         private void SetupEnableStatus()
         {
-            _screen.EnableSellImage.enabled = _playerModel.CanSellItem(_currentItem);
-            _screen.DisableSellImage.enabled = !_playerModel.CanSellItem(_currentItem);
+            _screen.EnableSellImage.enabled = _inventoryModel.CanSellItem(_currentItem);
+            _screen.DisableSellImage.enabled = !_inventoryModel.CanSellItem(_currentItem);
         }
     }
 }

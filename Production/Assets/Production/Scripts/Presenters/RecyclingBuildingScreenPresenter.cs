@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.UI;
 
 namespace Avramov.Production
@@ -15,7 +17,6 @@ namespace Avramov.Production
         private ItemTypes _currentItem2;
         private ItemTypes _currentItemResult;
 
-        //private BuildModel _target;
         private RecyclingBuildingModel _target;
 
         private RecyclingBuildingScreen _screen;
@@ -48,6 +49,8 @@ namespace Avramov.Production
             _screen.StartButton.onClick.RemoveListener(OnStartClick);
             _screen.StopButton.onClick.RemoveListener(OnStopClick);
             _screen.CloseButton.onClick.RemoveListener(OnCloseClick);
+
+            _screen.SetActive(false);
         }
 
         private void OnSelected()
@@ -55,19 +58,19 @@ namespace Avramov.Production
             if (_selectionModel.Selectable is RecyclingBuildingModel build)
             {
                 _target = build;
-                _index1 = 0;
-                _index2 = 0;
-                _currentItem1 = ItemTypes.None;
-                _currentItem2 = ItemTypes.None;
-                _currentItemResult = ItemTypes.None;
+                SetStartResources();
                 _screen.ResourceImage1.sprite = _assets.GetItemSprite(_currentItem1);
                 _screen.ResourceImage2.sprite = _assets.GetItemSprite(_currentItem2);
                 _screen.ResultImage.sprite = _assets.GetItemSprite(_currentItemResult);
                 SetupStartStopButtons();
+                _target.ModelChangedEvent += SetupStartStopButtons;
                 _screen.SetActive(true);
             }
             else
             {
+                if(_target != null)
+                    _target.ModelChangedEvent -= SetupStartStopButtons;
+
                 _screen.SetActive(false);
             }
         }
@@ -116,6 +119,28 @@ namespace Avramov.Production
             _currentItemResult = _itemsSettings.FindProduct(_currentItem1, _currentItem2);
             resourceImage.sprite = _assets.GetItemSprite(item);
             _screen.ResultImage.sprite = _assets.GetItemSprite(_currentItemResult);
+        }
+
+        private void SetStartResources()
+        {
+            _currentItemResult = _target.ProductingItem;
+
+            if( _currentItemResult == ItemTypes.None)
+            {
+                _index1 = 0;
+                _index2 = 0;
+                _currentItem1 = ItemTypes.None;
+                _currentItem2 = ItemTypes.None;
+                return;
+            }
+
+
+            IReadOnlyList<ItemTypes> subItems = _itemsSettings.GetSubItems(_currentItemResult);
+
+            _index1 = _target.Items.ToList().IndexOf(subItems[0]);
+            _index2 = _target.Items.ToList().IndexOf(subItems[1]);
+            _currentItem1 = subItems[0];
+            _currentItem2 = subItems[1];
         }
     }
 }

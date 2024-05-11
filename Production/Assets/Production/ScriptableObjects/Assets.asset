@@ -35,12 +35,6 @@ MonoBehaviour:
     <Sprite>k__BackingField: {fileID: 21300000, guid: d54a9728519c5d54bbe09aff5bd95284,
       type: 3}
   _buildingPrefabs:
-  - <BuildType>k__BackingField: 1
-    <Prefab>k__BackingField: {fileID: 4757301464428339484, guid: ca78e9b6b9cc33a4cbd799e5c3088727,
-      type: 3}
-  - <BuildType>k__BackingField: 2
-    <Prefab>k__BackingField: {fileID: 5710194202443720528, guid: e6c06034116b3a04fa8d4e51095dcef7,
-      type: 3}
-  - <BuildType>k__BackingField: 3
-    <Prefab>k__BackingField: {fileID: 4477582640490637285, guid: 597be79e2f41fe6499b01c0d4ece5cf1,
-      type: 3}
+  - {fileID: 2572648451490560298, guid: ca78e9b6b9cc33a4cbd799e5c3088727, type: 3}
+  - {fileID: 1193853283373548617, guid: e6c06034116b3a04fa8d4e51095dcef7, type: 3}
+  - {fileID: 1390150860840774437, guid: 597be79e2f41fe6499b01c0d4ece5cf1, type: 3}

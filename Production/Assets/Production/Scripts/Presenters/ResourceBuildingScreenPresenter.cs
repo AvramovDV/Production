@@ -6,7 +6,6 @@ namespace Avramov.Production
         private ScreensManager _screensManager;
         private Assets _assets;
 
-        //private BuildModel _target;
         private ResourceBuildingModel _target;
         private int _index;
         private ResourceBuildingScreen _screen;
@@ -38,6 +37,8 @@ namespace Avramov.Production
             _screen.StartButton.onClick.RemoveListener(OnStartClick);
             _screen.StopButton.onClick.RemoveListener(OnStopClick);
             _screen.CloseButton.onClick.RemoveListener(OnCloseClick);
+
+            _screen.SetActive(false);
         }
 
         private void OnSelect()
@@ -46,7 +47,7 @@ namespace Avramov.Production
             {
                 _target = model;
                 _index = 0;
-                _currentType = ItemTypes.None;
+                _currentType = _target.ProductingItem;
                 SetupChoosenItem();
                 SetupStartStopButtons();
                 _screen.SetActive(true);

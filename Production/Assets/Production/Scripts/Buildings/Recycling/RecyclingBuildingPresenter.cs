@@ -8,7 +8,7 @@ namespace Avramov.Production
         private SelectionModel _selection;
         private Assets _assets;
 
-        private BuildingView _view;
+        private RecyclingBuildingView _view;
 
         public RecyclingBuildingPresenter(RecyclingBuildingModel model, SelectionModel selection, Assets assets)
         {
@@ -36,7 +36,7 @@ namespace Avramov.Production
 
         private void InitView()
         {
-            BuildingView prefab = _assets.GetBuilding(_model.BuildType);
+            RecyclingBuildingView prefab = _assets.GetBuilding<RecyclingBuildingView>();
             _view = GameObject.Instantiate(prefab, _model.Position, prefab.transform.rotation);
         }
 
